@@ -3,7 +3,6 @@ package com.coinwallet.rechage.rabbit;
 import com.alibaba.fastjson.JSONObject;
 import com.coinwallet.common.apisecurity.AESCBC;
 import com.coinwallet.common.apisecurity.AESCBCUtil;
-import com.coinwallet.common.util.HttpRequestUtil;
 import com.coinwallet.common.web3j.response.TransactionsResponse;
 import com.coinwallet.common.web3j.service.CustomNodeService;
 import com.coinwallet.common.web3j.transaction.OWalletTransaction;
@@ -46,7 +45,6 @@ public class RechargeCoinToGatherReceiverTest {
 
     @Test
     public void checkBalance() throws Exception {
-        //回调通知充值成功
         JSONObject callBackJSONObject = new JSONObject();
         callBackJSONObject.put("from", "0x05ee546c1a62f90d7acbffd6d846c9c54c7cf94c");
         callBackJSONObject.put("to", "0x475bbf17fb192d2b4606258250aef806fed372cf");
@@ -61,7 +59,7 @@ public class RechargeCoinToGatherReceiverTest {
         Map map = new HashMap();
         map.put("in", in);
         map.put("seed", seed);
-        String s = HttpRequestUtil.doPostHeaderJsonFromJSONtoString("http://mobile-dev.o.bike/api/v1/ocnwallet/recharge", map);
+//        String s = HttpRequestUtil.doPostHeaderJsonFromJSONtoString("http://mobile-dev.o.bike/api/v1/ocnwallet/recharge", map);
 
 
 
@@ -70,7 +68,6 @@ public class RechargeCoinToGatherReceiverTest {
 
     @Test
     public void transfer() throws Exception {
-        //回调通知充值成功
         JSONObject callBackJSONObject = new JSONObject();
         callBackJSONObject.put("fromAddress", "0xdfa9540e3a6fe6ac0bca70bb7a3c1aeb93e43da1");
         callBackJSONObject.put("toAddress", "0x5623629c15733d9394706c6c9dd92ded590acbf5");
@@ -141,10 +138,10 @@ public class RechargeCoinToGatherReceiverTest {
             List<TransactionOrder> transactionOrders = transactionOrderMapper.selectByExample(transactionOrderExample);
             if (transactionOrders == null || transactionOrders.size() <= 0) {
                 lostList.add(transaction);
-                System.out.println(String.format("Txhash:_[!!不存在的!]__[%s]_[%s]", transaction.getHash(), transactionOrders.size()));
+                System.out.println(String.format("Txhash:_[!!is null!]__[%s]_[%s]", transaction.getHash(), transactionOrders.size()));
 
             } else {
-                System.out.println(String.format("Txhash:__________________________数据库中存在___________[%s]_[%s]", transaction.getHash(), transactionOrders.size()));
+                System.out.println(String.format("Txhash:__________________________database___________[%s]_[%s]", transaction.getHash(), transactionOrders.size()));
 
             }
         }
@@ -167,7 +164,7 @@ public class RechargeCoinToGatherReceiverTest {
                 }
             }
             if (!get) {
-                System.out.println(String.format("遗漏————————————:[%s]", t.getTxHash()));
+                System.out.println(String.format("————————————:[%s]", t.getTxHash()));
             }
 
         }
