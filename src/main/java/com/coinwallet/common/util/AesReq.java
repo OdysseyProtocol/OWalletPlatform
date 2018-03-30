@@ -1,0 +1,1 @@
+package com.coinwallet.common.util;/** * Created by luyangjian on 2017/9/22. */public class AesReq {    private String value;    public String getValue() {        return value;    }    public void setValue(String value) {        this.value = value;    }}
