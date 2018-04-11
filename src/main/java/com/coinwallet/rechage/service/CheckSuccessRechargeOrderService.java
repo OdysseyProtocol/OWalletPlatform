@@ -103,7 +103,7 @@ public class CheckSuccessRechargeOrderService {
         UserCoinBalance userCoinBalance = userCoinBalanceMapper.selectByUserIdAndMerchantInfoId(userWalletInfo.getUserid(), userWalletInfo.getMerchantId());
         CoinInfo coinInfo = coinInfoMapper.selectByPrimaryKey(transactionOrder.getCoinId());
         BigDecimal coinNum = transactionOrder.getCoinNum();
-        UserCoinLog userCoinLog = new UserCoinLog();
+        userCoinLog userCoinLog = new userCoinLog();
         if (userCoinBalance == null) {
             userCoinBalance = new UserCoinBalance();
             userCoinBalance.setUserid(userWalletInfo.getUserid());
@@ -197,7 +197,7 @@ public class CheckSuccessRechargeOrderService {
      * @param userCoinLog
      * @param chargeType
      */
-    private void createUserCoinLog(String txHash, BigDecimal rechargeAmount, CoinInfo coinInfo, UserCoinBalance userCoinBalance, UserCoinLog userCoinLog, Integer chargeType) {
+    private void createUserCoinLog(String txHash, BigDecimal rechargeAmount, CoinInfo coinInfo, UserCoinBalance userCoinBalance, userCoinLog userCoinLog, Integer chargeType) {
         userCoinLog.setOrderTxHash(txHash);
         userCoinLog.setCoinName(coinInfo.getCoinName());
         userCoinLog.setCoinId(coinInfo.getId());

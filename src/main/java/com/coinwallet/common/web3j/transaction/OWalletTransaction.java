@@ -2,13 +2,11 @@ package com.coinwallet.common.web3j.transaction;
 
 import com.alibaba.fastjson.JSON;
 import com.coinwallet.common.util.Constants;
+import com.coinwallet.common.util.StringUtil;
 import com.coinwallet.common.web3j.api.EtherScanApi;
 import com.coinwallet.common.web3j.api.OWalletAPI;
 import com.coinwallet.common.web3j.bean.TransactionVerificationInfo;
-import com.coinwallet.common.web3j.response.BlockInfoResponse;
-import com.coinwallet.common.web3j.response.EtherScanResponse;
-import com.coinwallet.common.web3j.response.TransactionReceiptResponse;
-import com.coinwallet.common.web3j.response.TransactionsResponse;
+import com.coinwallet.common.web3j.response.*;
 import com.coinwallet.common.web3j.utils.OWalletUtils;
 import com.coinwallet.common.web3j.utils.RawTransactionUtils;
 import com.coinwallet.common.web3j.utils.RequestUtils;
@@ -261,7 +259,7 @@ public class OWalletTransaction {
     public static BigInteger getRecentBlockNumber() {
         String responseResult = RequestUtils.sendGet(getEthRecentBlockNumber());
         responseResult = responseResult.replace("/n", "");
-        com.coinwallet.common.web3j.response.EtherScanResponse responseToken = JSON.parseObject(responseResult, new com.alibaba.fastjson.TypeReference<com.coinwallet.common.web3j.response.EtherScanResponse>() {
+        com.coinwallet.common.web3j.response.EtherScanResponse responseToken = JSON.parseObject(responseResult, new com.alibaba.fastjson.TypeReference<EtherScanResponse>() {
         });
         if (responseToken == null) {
             return null;
@@ -394,6 +392,26 @@ public class OWalletTransaction {
             logger.error(e.getMessage(),"verifyTransaction fail:"+ e);
             return null;
         }
+    }
+
+    public static BlockTransactionsResponse.Block getBlockByNumber(String blockNo) throws Exception {
+        String blockByNumberUrl = getBlockByNumberUrl(blockNo);
+        String responseResult = RequestUtils.sendGet(blockByNumberUrl);
+        responseResult = responseResult.replace("/n", "");
+        if (StringUtil.isEmpty(responseResult)) {
+            return null;
+        }
+
+        try {
+
+            BlockTransactionsResponse ethBlock = JSON.parseObject(responseResult, new com.alibaba.fastjson.TypeReference<BlockTransactionsResponse>() {
+            });
+            return ethBlock.getResult();
+        } catch (Exception e) {
+            throw e;
+        }
+
+
     }
 
 

@@ -7,7 +7,7 @@ import com.coinwallet.rechage.dao.UserCoinLogMapper;
 import com.coinwallet.rechage.dao.UserWalletInfoMapper;
 import com.coinwallet.rechage.entity.TransactionOrder;
 import com.coinwallet.rechage.entity.UserCoinBalance;
-import com.coinwallet.rechage.entity.UserCoinLog;
+import com.coinwallet.rechage.entity.userCoinLog;
 import com.coinwallet.rechage.entity.UserWalletInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,7 @@ public class AffirmRechargeToGatherService {
         UserCoinBalance userCoinBalance = userCoinBalanceMapper.selectByUserIdAndMerchantInfoId(userWalletInfo.getUserid(), userWalletInfo.getMerchantId());
         int res = checkSuccessRechargeOrderService.changeTransactionSuccess(transactionOrder);
         if (res > 0) {
-            UserCoinLog userCoinLog = new UserCoinLog();
+            userCoinLog userCoinLog = new userCoinLog();
             userCoinLog.setCoinId(userCoinBalance.getCoinId());
             userCoinLog.setCoinName(userCoinBalance.getCoinName());
             userCoinLog.setUserid(userCoinBalance.getUserid());

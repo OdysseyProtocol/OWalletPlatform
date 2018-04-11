@@ -4,7 +4,6 @@ import com.coinwallet.common.web3j.bean.WalletInfo;
 import com.coinwallet.common.web3j.response.TransactionsResponse;
 import com.coinwallet.common.web3j.transaction.OWalletTransaction;
 import com.coinwallet.common.web3j.utils.OWalletUtils;
-import org.web3j.crypto.ECKeyPair;
 
 import java.io.IOException;
 import java.math.BigInteger;

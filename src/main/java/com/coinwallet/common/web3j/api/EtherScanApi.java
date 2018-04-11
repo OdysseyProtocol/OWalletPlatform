@@ -1,6 +1,8 @@
 package com.coinwallet.common.web3j.api;
 
+import com.coinwallet.common.util.StringUtil;
 import com.coinwallet.common.web3j.key.APIKey;
+import com.coinwallet.common.web3j.utils.CommonUtils;
 
 import java.io.IOException;
 
@@ -118,5 +120,17 @@ public class EtherScanApi {
     public static String getEthRecentBlockInfo(String blockNo) {
         return Url + "module=block&action=getblockreward&blockno=" + blockNo + "&apikey=" + APIKey.EtherScan_API_KEY;
 
+    }
+
+    /**
+     * https://api.etherscan.io/api?module=proxy&action=eth_getBlockByNumber&tag=0x10d4f&boolean=true&apikey=YourApiKeyToken
+     *
+     * @return
+     */
+    public static String getBlockByNumberUrl(String blockNo) throws Exception {
+        if (!StringUtil.isNumber(blockNo)) {
+            throw new Exception("please input valid number");
+        }
+        return Url + "module=proxy&action=eth_getBlockByNumber&tag=" +"0x"+ CommonUtils.decimal2Hex(Long.valueOf(blockNo)) + "&boolean=true&apikey=" + APIKey.EtherScan_API_KEY;
     }
 }

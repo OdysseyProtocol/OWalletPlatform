@@ -9,7 +9,6 @@ import com.coinwallet.common.response.ResponseValue;
 import com.coinwallet.common.response.SuccessResponse;
 import com.coinwallet.common.util.AES;
 import com.coinwallet.common.util.Constants;
-import com.coinwallet.common.util.StringUtil;
 import com.coinwallet.common.web3j.api.OWalletAPI;
 import com.coinwallet.common.web3j.api.Web3JClient;
 import com.coinwallet.common.web3j.bean.WalletInfo;
@@ -21,7 +20,6 @@ import com.coinwallet.rechage.controller.req.CreateWalletReq;
 import com.coinwallet.rechage.controller.resp.CreateWalletResp;
 import com.coinwallet.rechage.dao.*;
 import com.coinwallet.rechage.entity.*;
-import com.coinwallet.rechage.rabbit.RabbitRechargeConfig;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -154,7 +152,7 @@ public class WalletService {
         BigDecimal coinNum = new BigDecimal(jsonObject.get("coinNum").toString());
         Integer transactionType = (Integer) jsonObject.get("type");
         UserCoinBalance coinBalance = userCoinBalanceMapper.selectByUserIdAndMerchantInfoId(userId, merchantInfo.getId());
-        UserCoinLog userCoinLog = new UserCoinLog();
+        userCoinLog userCoinLog = new userCoinLog();
         UserCoinBalance updateUserCoinBalance = new UserCoinBalance();
         updateUserCoinBalance.setId(coinBalance.getId());
         if (Constants.USER_COIN_CONSUME == transactionType) {
@@ -180,7 +178,7 @@ public class WalletService {
      * @param userCoinLog
      * @param updateUserCoinBalance
      */
-    private void updateUserBalanceAndRecordUserLog(BigDecimal ocnNum, Integer transactionType, UserCoinBalance coinBalance, UserCoinLog userCoinLog, UserCoinBalance updateUserCoinBalance) {
+    private void updateUserBalanceAndRecordUserLog(BigDecimal ocnNum, Integer transactionType, UserCoinBalance coinBalance, userCoinLog userCoinLog, UserCoinBalance updateUserCoinBalance) {
         updateUserCoinBalance.setLastTradingTime(new Date());
         userCoinLog.setCoinId(coinBalance.getCoinId());
         userCoinLog.setCoinName(coinBalance.getCoinName());

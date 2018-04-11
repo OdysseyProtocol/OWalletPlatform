@@ -65,6 +65,17 @@ public class CommonUtils {
         return new BigInteger(x, 16);
     }
 
+    /**
+     * @param num
+     * @return
+     */
+    public static String decimal2Hex(Long num) {
+        if (num == null) return null;
+        return Long.toHexString(num);
+
+
+    }
+
 
 }
 

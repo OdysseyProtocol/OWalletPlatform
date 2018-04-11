@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.coinwallet.rechage.dao.UserCoinLogMapper" >
-  <resultMap id="BaseResultMap" type="com.coinwallet.rechage.entity.UserCoinLog" >
+  <resultMap id="BaseResultMap" type="com.coinwallet.rechage.entity.userCoinLog" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="merchant_id" property="merchantId" jdbcType="INTEGER" />
     <result column="userid" property="userid" jdbcType="INTEGER" />
@@ -99,7 +99,7 @@
     delete from user_coin_log
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.coinwallet.rechage.entity.UserCoinLog" >
+  <insert id="insert" parameterType="com.coinwallet.rechage.entity.userCoinLog" >
     insert into user_coin_log (id, merchant_id, userid, 
       change_type, change_num, coin_id, 
       coin_name, create_time, order_tx_hash
@@ -109,7 +109,7 @@
       #{coinName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{orderTxHash,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.coinwallet.rechage.entity.UserCoinLog" >
+  <insert id="insertSelective" parameterType="com.coinwallet.rechage.entity.userCoinLog" >
     insert into user_coin_log
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -220,7 +220,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.coinwallet.rechage.entity.UserCoinLog" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.coinwallet.rechage.entity.userCoinLog" >
     update user_coin_log
     <set >
       <if test="merchantId != null" >
@@ -250,7 +250,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.coinwallet.rechage.entity.UserCoinLog" >
+  <update id="updateByPrimaryKey" parameterType="com.coinwallet.rechage.entity.userCoinLog" >
     update user_coin_log
     set merchant_id = #{merchantId,jdbcType=INTEGER},
       userid = #{userid,jdbcType=INTEGER},

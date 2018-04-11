@@ -1,6 +1,6 @@
 package com.coinwallet.rechage.dao;
 
-import com.coinwallet.rechage.entity.UserCoinLog;
+import com.coinwallet.rechage.entity.userCoinLog;
 import com.coinwallet.rechage.entity.UserCoinLogExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
@@ -8,19 +8,19 @@ import org.apache.ibatis.annotations.Param;
 public interface UserCoinLogMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(UserCoinLog record);
+    int insert(userCoinLog record);
 
-    int insertSelective(UserCoinLog record);
+    int insertSelective(userCoinLog record);
 
-    List<UserCoinLog> selectByExample(UserCoinLogExample example);
+    List<userCoinLog> selectByExample(UserCoinLogExample example);
 
-    UserCoinLog selectByPrimaryKey(Integer id);
+    userCoinLog selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") UserCoinLog record, @Param("example") UserCoinLogExample example);
+    int updateByExampleSelective(@Param("record") userCoinLog record, @Param("example") UserCoinLogExample example);
 
-    int updateByExample(@Param("record") UserCoinLog record, @Param("example") UserCoinLogExample example);
+    int updateByExample(@Param("record") userCoinLog record, @Param("example") UserCoinLogExample example);
 
-    int updateByPrimaryKeySelective(UserCoinLog record);
+    int updateByPrimaryKeySelective(userCoinLog record);
 
-    int updateByPrimaryKey(UserCoinLog record);
+    int updateByPrimaryKey(userCoinLog record);
 }
